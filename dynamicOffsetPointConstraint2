@@ -1,0 +1,41 @@
+//int $index = `scriptJob -conditionTrue "SomethingSelected" "test1()"; 
+
+global proc test1()
+{
+	string $selection[]= `ls -sl`;
+	if($selection[0] == "Obj2")
+	{
+		float $p1[]= `xform -q -ws -sp Obj1` ; 
+    
+		//float $p2[]= `xform -q -ws -sp Obj2_Grp` ;
+    
+		float $p2[]= `xform -q -ws -sp Obj2` ;
+		
+		print ($p1[1]+"\n");
+		print ($p2[1]+"\n");
+		//print ($p1[1]-$p2[1]);
+		
+		xform -a -ws -t $p2[0] $p2[1] $p2[2] Obj2_Grp;
+		
+		setAttr Obj2_Grp_pointConstraint1.offsetX ($p2[0]);
+        setAttr Obj2_Grp_pointConstraint1.offsetY ($p2[1]);
+        setAttr Obj2_Grp_pointConstraint1.offsetZ ($p2[2]);
+		
+		float $state=`getAttr Obj2.Follow` ;
+		if($state==1)
+		{
+			setAttr Obj2_Grp_pointConstraint1.Obj1W0 1;
+			//setAttr Obj2_Grp_pointConstraint1.offsetX ($p2[0]-$p1[0]);
+			//setAttr Obj2_Grp_pointConstraint1.offsetY ($p2[1]-$p1[1]);
+			//setAttr Obj2_Grp_pointConstraint1.offsetZ ($p2[2]-$p1[2]);
+        
+		}
+		else
+		{
+			setAttr Obj2_Grp_pointConstraint1.Obj1W0 0;
+			//setAttr nurbsCircle2_pointConstraint1.offsetX $p2[0];
+			//setAttr nurbsCircle2_pointConstraint1.offsetY $p2[1];
+			//setAttr nurbsCircle2_pointConstraint1.offsetZ $p2[2];
+		}
+	}
+}

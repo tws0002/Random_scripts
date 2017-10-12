@@ -1,0 +1,25 @@
+int $index = `scriptJob -attributeChange "FollowShoulder" "followshldr()"`;
+
+global proc followshldr()
+{
+	int $x1, $y1, $z1, $x2, $y2, $z2;
+	$x1= `getattr(ShldrCtrl.rotatePivotTranslate.tx)`;
+	$y1= `getattr(ShldrCtrl.rotatePivotTranslate.ty)`;
+	$z1= `getattr(ShldrCtrl.rotatePivotTranslate.tz)`;
+
+	$x2= `getattr(WrstCtrl.rotatePivotTranslate.tx)`;
+	$y2= `getattr(WrstCtrl.rotatePivotTranslate.ty)`;
+	$z2= `getattr(WrstCtrl.rotatePivotTranslate.tz)`;
+
+	if(`getattr(WrstCtrl.FollowShoulder)` == 1)
+	{
+		setattr(Pconst.offset.tx, ($x1-$x2));
+		setattr(Pconst.offset.ty, ($y1-$y2));
+		setattr(Pconst.offset.tz, ($z1-$z2));
+		setattr(Pconst.weight=1);
+	}
+	else
+	{
+		setattr(Pconst.weight=0);
+	}
+}

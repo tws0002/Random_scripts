@@ -1,0 +1,17 @@
+int $index = `scriptJob -killWithScene -event "SelectionChanged" "isTrue";
+
+global proc isTrue()
+{
+	string $selection[] = `ls -sl`;
+	print $selection[0];
+	if( stringArrayContains("obj1", $selection))
+	{
+	print "Hey";
+	}
+	if(stringArrayContains("obj2", $selection))
+	{
+	print " wassup!";
+	}
+	
+}	
+	

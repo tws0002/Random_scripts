@@ -1,0 +1,3 @@
+import PySide.QTCore as qc
+import PySide.QTGui as qg
+

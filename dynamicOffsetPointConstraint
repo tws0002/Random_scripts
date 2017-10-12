@@ -1,0 +1,28 @@
+//int $index=`scriptJob -ac "nurbsCircle2.Follow" "test1()"`;
+global proc test1()
+{
+    float $p1[]= `xform -q -ws -t nurbsCircle1 `; 
+    
+    float $p2[]= `xform -q -ws -t nurbsCircle2 `;
+    
+    print ($p1[1]+"\n");
+    print ($p2[1]+"\n");
+    print ($p1[1]-$p2[1]);
+
+    float $state=`getAttr nurbsCircle2.Follow ` ;
+    if($state==1)
+    {
+        setAttr nurbsCircle2_pointConstraint1.nurbsCircle1W0 1;
+        setAttr nurbsCircle2_pointConstraint1.offsetX ($p2[0]-$p1[0]);
+        setAttr nurbsCircle2_pointConstraint1.offsetY ($p2[1]-$p1[1]);
+        setAttr nurbsCircle2_pointConstraint1.offsetZ ($p2[2]-$p1[2]);
+        
+    }
+    else
+    {
+        setAttr nurbsCircle2_pointConstraint1.nurbsCircle1W0 0;
+		//setAttr nurbsCircle2_pointConstraint1.offsetX $p2[0];
+        //setAttr nurbsCircle2_pointConstraint1.offsetY $p2[1];
+        //setAttr nurbsCircle2_pointConstraint1.offsetZ $p2[2];
+    }
+}

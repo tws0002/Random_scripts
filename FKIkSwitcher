@@ -1,0 +1,26 @@
+global proc FKIKSwitcher()
+{
+	int $fkikChecker = `getAttr fkikSwitch.FKIK`;
+
+	if ($fkikChecker == 0)
+	{
+		print ("IK");
+		setAttr "shoulder_ctl.rotateX" `getAttr "shoulder.rotateX"`;
+		setAttr "shoulder_ctl.rotateY" `getAttr "shoulder.rotateY"`;
+		setAttr "shoulder_ctl.rotateZ" `getAttr "shoulder.rotateZ"`;
+		
+		setAttr "elbow_ctl.rotateX" `getAttr "elbow.rotateX"`;
+		setAttr "elbow_ctl.rotateY" `getAttr "elbow.rotateY"`;
+		setAttr "elbow_ctl.rotateZ" `getAttr "elbow.rotateZ"`;
+
+		setAttr "wrist_ctl.rotateX" `getAttr "wrist.rotateX"`;
+		setAttr "wrist_ctl.rotateY" `getAttr "wrist.rotateY"`;
+		setAttr "wrist_ctl.rotateZ" `getAttr "wrist.rotateZ"`;
+		
+	}
+
+	if ($fkikChecker == 1)
+	{
+		print ("FK here");
+	}
+}
